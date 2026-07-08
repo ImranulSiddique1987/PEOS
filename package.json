@@ -1,0 +1,22 @@
+{
+  "name": "peos",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PEOS (Product Engineering Operating System) - Enterprise Product Engineering Platform",
+  "packageManager": "pnpm@11.9.0",
+  "engines": {
+    "node": ">=24.14.0",
+    "pnpm": ">=11.9.0"
+  },
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "test": "turbo test",
+    "lint": "turbo lint",
+    "format": "turbo format",
+    "clean": "turbo clean"
+  },
+  "devDependencies": {
+    "turbo": "^2.10.4"
+  }
+}
