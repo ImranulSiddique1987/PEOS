@@ -18,7 +18,10 @@
     "prepare": "husky"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21.2.0",
+    "@commitlint/config-conventional": "^21.2.0",
     "@eslint/js": "^10.0.1",
+    "@peos/commitlint": "workspace:*",
     "@tailwindcss/cli": "^4.3.2",
     "eslint": "^10.6.0",
     "husky": "^9.1.7",

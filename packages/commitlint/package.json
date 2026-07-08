@@ -1,0 +1,12 @@
+{
+  "name": "@peos/commitlint",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./commitlint.config.mjs"
+  },
+  "dependencies": {
+    "@commitlint/config-conventional": "^21.2.0"
+  }
+}
