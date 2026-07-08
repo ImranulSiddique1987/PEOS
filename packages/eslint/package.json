@@ -1,0 +1,14 @@
+{
+  "name": "@peos/eslint-config",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Shared ESLint configurations for the PEOS monorepo.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "files": [
+    "eslint.config.mjs"
+  ],
+  "exports": {
+    ".": "./eslint.config.mjs"
+  }
+}
