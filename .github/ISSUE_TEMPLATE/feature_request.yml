@@ -1,0 +1,10 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: PEOS Documentation
+    url: https://github.com/<your-org>/PEOS/tree/main/docs
+    about: Read the documentation before opening an issue.
+
+  - name: Questions & Discussions
+    url: https://github.com/<your-org>/PEOS/discussions
+    about: Ask questions and discuss ideas with the community.
