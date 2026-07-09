@@ -50,6 +50,8 @@ importers:
         specifier: ^21.2.0
         version: 21.2.0
 
+  packages/core: {}
+
   packages/eslint: {}
 
   packages/husky: {}
