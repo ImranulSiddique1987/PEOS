@@ -72,6 +72,12 @@ importers:
 
   packages/husky: {}
 
+  packages/platform:
+    devDependencies:
+      "@peos/testing":
+        specifier: workspace:*
+        version: link:../testing
+
   packages/prettier:
     dependencies:
       prettier:
