@@ -1,17 +1,17 @@
 # PEOS Master Implementation Roadmap (PMIR)
 
-| Item                       | Value                                       |
-| -------------------------- | ------------------------------------------- |
-| Project                    | PEOS (Product Engineering Operating System) |
-| Document                   | Master Implementation Roadmap (PMIR)        |
-| Version                    | 1.1.0                                       |
-| Status                     | Active                                      |
-| Repository                 | https://github.com/ImranulSiddique1987/PEOS |
-| Branch                     | main                                        |
-| Governance Package         | @peos/governance                            |
-| Repository Baseline        | 55d4655                                     |
-| Current Phase              | Phase 2 — Shared Platform Foundation        |
-| Latest Completed Milestone | M-036 — Shared Platform Core Foundation     |
+| Item                       | Value                                            |
+| -------------------------- | ------------------------------------------------ |
+| Project                    | PEOS (Product Engineering Operating System)      |
+| Document                   | Master Implementation Roadmap (PMIR)             |
+| Version                    | 1.1.1                                            |
+| Status                     | Active                                           |
+| Repository                 | https://github.com/ImranulSiddique1987/PEOS      |
+| Branch                     | main                                             |
+| Governance Package         | @peos/governance                                 |
+| Repository Baseline        | 55d4655                                          |
+| Current Phase              | Phase 2 — Shared Platform Foundation             |
+| Latest Completed Milestone | M-037 — Shared Platform Configuration Foundation |
 
 ---
 
@@ -501,16 +501,17 @@ In Progress
 | M-034 Governance Foundation                     | Completed |
 | M-035 Workspace Package Standards Specification | Completed |
 | M-036 Shared Platform Core Foundation           | Completed |
+| M-037 Shared Platform Configuration Foundation  | Completed |
 
 ### Current Status
 
-The repository is synchronized through M-036.
+The repository is synchronized through M-037.
 
-The next implementation milestone shall be selected through architectural review and the Architectural Maturity Gates.
+The next implementation milestone is M-038.
 
-The milestone shall originate from this roadmap.
+Selection of M-038 has passed the Architectural Maturity Gates and shall proceed following Repository Review, Repository Health validation, and the PEOS Enterprise Implementation Methodology.
 
-It shall not be inferred from repository structure or conversational history.
+Future milestones shall continue to originate from this roadmap and never from conversational history.
 
 ---
 
@@ -671,10 +672,13 @@ Repository synchronization is required whenever completed implementation milesto
 
 # 18. Roadmap Version History
 
-| Version | Status     | Description                                                                                                                                                                                                                             |
-| ------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1.0.0   | Superseded | Initial governance roadmap established during Governance Foundation (M-034).                                                                                                                                                            |
-| 1.1.0   | Active     | Repository synchronized through M-036. Introduced repository-first governance, Canonical Source of Truth, enhanced Architectural Maturity Gates, Platform workspace taxonomy, implementation lifecycle refinements, and ADR governance. |
+| Version   | Status     | Description                                                                                                                                                                                                                             |
+| --------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Version   | Status     | Description                                                                                                                                                                                                                             |
+| --------- | --------   | -------------                                                                                                                                                                                                                           |
+| 1.0.0     | Superseded | Initial governance roadmap established during Governance Foundation (M-034).                                                                                                                                                            |
+| 1.1.0     | Superseded | Repository synchronized through M-036. Introduced repository-first governance, Canonical Source of Truth, enhanced Architectural Maturity Gates, Platform workspace taxonomy, implementation lifecycle refinements, and ADR governance. |
+| 1.1.1     | Active     | Repository synchronized through M-037. Added Shared Platform Configuration Foundation, synchronized governance with validated repository state, and established M-038 as the next implementation milestone.                             |
 
 # 19. Enterprise Handoff Requirements
 
