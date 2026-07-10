@@ -13,3 +13,5 @@ export * from "./lifecycle";
 export * from "./metadata";
 export * from "./configuration";
 export * as configuration from "./configuration";
+export * from "./logging";
+export * as logging from "./logging";
