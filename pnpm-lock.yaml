@@ -68,6 +68,8 @@ importers:
 
   packages/eslint: {}
 
+  packages/governance: {}
+
   packages/husky: {}
 
   packages/prettier:
