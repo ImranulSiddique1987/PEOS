@@ -1,17 +1,17 @@
 # PEOS Master Implementation Roadmap (PMIR)
 
-| Item                       | Value                                       |
-| -------------------------- | ------------------------------------------- |
-| Project                    | PEOS (Product Engineering Operating System) |
-| Document                   | Master Implementation Roadmap (PMIR)        |
-| Version                    | 1.1.0                                       |
-| Status                     | Active                                      |
-| Repository                 | https://github.com/ImranulSiddique1987/PEOS |
-| Branch                     | main                                        |
-| Governance Package         | @peos/governance                            |
-| Repository Baseline        | 55d4655                                     |
-| Current Phase              | Phase 2 — Shared Platform Foundation        |
-| Latest Completed Milestone | M-036 — Shared Platform Core Foundation     |
+| Item                       | Value                                                |
+| -------------------------- | ---------------------------------------------------- |
+| Project                    | PEOS (Product Engineering Operating System)          |
+| Document                   | Master Implementation Roadmap (PMIR)                 |
+| Version                    | 1.1.2                                                |
+| Status                     | Active                                               |
+| Repository                 | https://github.com/ImranulSiddique1987/PEOS          |
+| Branch                     | main                                                 |
+| Governance Package         | @peos/governance                                     |
+| Repository Baseline        | 55d4655                                              |
+| Current Phase              | Phase 2 — Shared Platform Foundation                 |
+| Latest Completed Milestone | M-038 — Shared Platform Logging Contracts Foundation |
 
 ---
 
@@ -217,7 +217,7 @@ Implementation begins only after all applicable gates have been satisfied.
 | Repository          | Active                                                      |
 | Repository Baseline | 55d4655                                                     |
 | Development Phase   | Phase 2 — Shared Platform Foundation                        |
-| PMIR Version        | 1.1.0                                                       |
+| PMIR Version        | 1.1.2                                                       |
 | Repository Status   | Healthy                                                     |
 | Git Strategy        | GitHub main branch is the canonical implementation baseline |
 
@@ -491,26 +491,28 @@ In Progress
 
 ### Completed Milestones
 
-| Milestone                                       | Status    |
-| ----------------------------------------------- | --------- |
-| M-029 Workspace Build Foundation                | Completed |
-| M-030 Shared Runtime Foundation                 | Completed |
-| M-031 Workspace Testing Foundation              | Completed |
-| M-032 Workspace Documentation Foundation        | Completed |
-| M-033 Workspace Development Tools Foundation    | Completed |
-| M-034 Governance Foundation                     | Completed |
-| M-035 Workspace Package Standards Specification | Completed |
-| M-036 Shared Platform Core Foundation           | Completed |
+| Milestone                                          | Status    |
+| -------------------------------------------------- | --------- |
+| M-029 Workspace Build Foundation                   | Completed |
+| M-030 Shared Runtime Foundation                    | Completed |
+| M-031 Workspace Testing Foundation                 | Completed |
+| M-032 Workspace Documentation Foundation           | Completed |
+| M-033 Workspace Development Tools Foundation       | Completed |
+| M-034 Governance Foundation                        | Completed |
+| M-035 Workspace Package Standards Specification    | Completed |
+| M-036 Shared Platform Core Foundation              | Completed |
+| M-037 Shared Platform Configuration Foundation     | Completed |
+| M-038 Shared Platform Logging Contracts Foundation | Completed |
 
 ### Current Status
 
-The repository is synchronized through M-036.
+The repository is synchronized through M-038.
 
-The next implementation milestone shall be selected through architectural review and the Architectural Maturity Gates.
+The next implementation milestone is M-039.
 
-The milestone shall originate from this roadmap.
+Selection of M-039 shall follow Repository Review, Repository Health validation, Architectural Maturity Gates, and the PEOS Enterprise Implementation Methodology.
 
-It shall not be inferred from repository structure or conversational history.
+Future milestones shall continue to originate from this roadmap and never from conversational history.
 
 ---
 
@@ -674,7 +676,8 @@ Repository synchronization is required whenever completed implementation milesto
 | Version | Status     | Description                                                                                                                                                                                                                             |
 | ------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1.0.0   | Superseded | Initial governance roadmap established during Governance Foundation (M-034).                                                                                                                                                            |
-| 1.1.0   | Active     | Repository synchronized through M-036. Introduced repository-first governance, Canonical Source of Truth, enhanced Architectural Maturity Gates, Platform workspace taxonomy, implementation lifecycle refinements, and ADR governance. |
+| 1.1.0   | Superseded | Repository synchronized through M-036. Introduced repository-first governance, Canonical Source of Truth, enhanced Architectural Maturity Gates, Platform workspace taxonomy, implementation lifecycle refinements, and ADR governance. |
+| 1.1.2   | Active     | Repository synchronized through M-038. Added Shared Platform Configuration Foundation (M-037) and Shared Platform Logging Contracts Foundation (M-038). Governance synchronized with the validated repository state.                    |
 
 # 19. Enterprise Handoff Requirements
 
