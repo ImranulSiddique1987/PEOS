@@ -6,4 +6,8 @@ describe("@peos/platform", () => {
   it("should export the public platform API", () => {
     expect(platform).toBeDefined();
   });
+
+  it("should export the configuration module", () => {
+    expect(platform.configuration).toBeDefined();
+  });
 });

@@ -11,3 +11,5 @@ export * from "./contracts";
 export * from "./environment";
 export * from "./lifecycle";
 export * from "./metadata";
+export * from "./configuration";
+export * as configuration from "./configuration";

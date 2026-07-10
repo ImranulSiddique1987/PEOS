@@ -2,22 +2,49 @@
 
 Shared platform contracts for the PEOS (Product Engineering Operating System) monorepo.
 
+---
+
 ## Purpose
 
 This package defines the foundational platform contracts used across PEOS.
 
 It intentionally provides architectural contracts rather than runtime implementations.
 
-## Scope
+---
 
-Current responsibilities include:
+## Current Platform Modules
 
-- Platform metadata contracts
-- Environment contracts
-- Platform lifecycle contracts
-- Shared platform interfaces
+The package currently provides the following contract modules:
 
-Future platform capabilities such as configuration, logging, telemetry, analytics, AI, and memory will build upon these contracts.
+### Platform Contracts
+
+Shared platform abstractions and foundational interfaces.
+
+### Environment Contracts
+
+Shared environment abstractions.
+
+### Lifecycle Contracts
+
+Platform lifecycle definitions.
+
+### Metadata Contracts
+
+Platform metadata contracts.
+
+### Configuration Contracts
+
+Shared platform configuration contracts including:
+
+- PlatformConfiguration
+- ConfigurationSource
+- ConfigurationProvider
+- ConfigurationLoader
+- ConfigurationValidation
+
+These contracts define the platform configuration model without prescribing runtime implementations.
+
+---
 
 ## Design Principles
 
@@ -26,3 +53,23 @@ Future platform capabilities such as configuration, logging, telemetry, analytic
 - Zero runtime dependencies
 - Explicit public API
 - Incremental evolution
+- Repository-first governance
+
+---
+
+## Deferred Capabilities
+
+The following platform capabilities remain intentionally deferred to future implementation milestones:
+
+- Runtime configuration
+- Logging
+- Dependency Injection
+- Plugin System
+- Telemetry
+- Event Bus
+- Metrics
+- Analytics
+- AI Platform Services
+- Enterprise Memory
+
+Each capability will be introduced through validated implementation milestones following the PEOS Master Implementation Roadmap (PMIR).
