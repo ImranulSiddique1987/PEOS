@@ -62,6 +62,8 @@ importers:
         specifier: workspace:*
         version: link:../testing
 
+  packages/documentation: {}
+
   packages/eslint: {}
 
   packages/husky: {}

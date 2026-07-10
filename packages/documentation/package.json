@@ -1,0 +1,17 @@
+{
+  "name": "@peos/documentation",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared documentation workspace for the PEOS monorepo.",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "README.md"
+  ],
+  "scripts": {
+    "build": "echo \"No build step required\"",
+    "lint": "echo \"No lint step required\"",
+    "typecheck": "echo \"No typecheck step required\"",
+    "test": "echo \"No tests required\""
+  }
+}
