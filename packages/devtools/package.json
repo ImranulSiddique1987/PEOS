@@ -6,12 +6,18 @@
   "license": "MIT",
   "type": "module",
   "files": [
-    "README.md"
+    "README.md",
+    "modules"
   ],
   "scripts": {
-    "build": "echo \"No build step required\"",
-    "lint": "echo \"No lint step required\"",
-    "typecheck": "echo \"No typecheck step required\"",
-    "test": "echo \"No tests required\""
+    "build": "tsc -p tsconfig.json",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "pmir:update": "tsx modules/pmir/update-pmir.ts"
+  },
+  "devDependencies": {
+    "@peos/tsconfig": "workspace:*",
+    "tsx": "^4.23.0"
   }
 }

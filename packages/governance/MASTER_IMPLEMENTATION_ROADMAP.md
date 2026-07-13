@@ -22,8 +22,7 @@ Governance Package @peos/governance
 
 Current Phase Phase 2 --- Shared Platform Foundation
 
-Latest Completed Milestone M-039 — Shared Platform Error Contracts Foundation
-Foundation
+Latest Completed Milestone M-039 - Shared Platform Error Contracts Foundation
 
 Next Milestone M-040 — Shared Platform Event Contracts Foundation
 ------------------------------------------------------------------------------
@@ -300,25 +299,11 @@ Version Status Description
 
 ---
 
-1.0.0 Superseded Initial roadmap
-
-1.1.0 Superseded Repository synchronized
-through M-036
-
-1.1.2 Superseded Repository synchronized
-through M-038
-
-1.2.0 Superseded Introduced planned roadmap
-M-039--M-055, milestone
-reservation policy, dependency
-chain and promotion workflow.
-
 1.2.1 Active
 
 Repository synchronized through M-039.
-Completed Shared Platform Error Contracts Foundation.
+Completed M-039 - Shared Platform Error Contracts Foundation.
 Promoted M-040 to Ready.
------------------------------------------------------------------------
 
 ---
 
@@ -361,9 +346,7 @@ Every milestone is complete only after:
 
 # 21. Lessons Learned
 
-## Lesson N+22
-
-Platform capabilities shall continue evolving through contracts-first architecture before runtime implementations.
+## Lesson N+22: Platform capabilities shall continue evolving through contracts-first architecture before runtime implementations.
 
 # 22. Architecture Decision Records
 
