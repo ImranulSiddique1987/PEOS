@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.2.0
+
+### Added
+
+- Shared Error Contracts
+- ErrorCategory
+- ErrorSeverity
+- ErrorCode
+- ErrorContext
+- ErrorDetails
+- PlatformError
+- PlatformResult
+
+Implemented as part of:
+
+**M-039 — Shared Platform Error Contracts Foundation**
+
+---
+
 ## 0.1.1
 
 ### Added

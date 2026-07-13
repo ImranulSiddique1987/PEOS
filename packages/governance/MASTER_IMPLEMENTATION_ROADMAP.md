@@ -10,7 +10,7 @@ Project PEOS (Product Engineering Operating System)
 
 Document Master Implementation Roadmap (PMIR)
 
-Version 1.2.0
+Version 1.2.1
 
 Status Active
 
@@ -22,11 +22,10 @@ Governance Package @peos/governance
 
 Current Phase Phase 2 --- Shared Platform Foundation
 
-Latest Completed Milestone M-038 --- Shared Platform Logging Contracts
+Latest Completed Milestone M-039 — Shared Platform Error Contracts Foundation
 Foundation
 
-Current Milestone M-039 --- Shared Platform Error Contracts
-Foundation
+Next Milestone M-040 — Shared Platform Event Contracts Foundation
 ------------------------------------------------------------------------------
 
 ---
@@ -123,9 +122,9 @@ No implementation begins until all gates pass.
 
 - Repository Status: Healthy
 - Current Phase: Phase 2 --- Shared Platform Foundation
-- PMIR Version: 1.2.0
-- Latest Completed: M-038
-- Current Milestone: M-039 (Ready)
+- PMIR Version: 1.2.1
+- Latest Completed: M-039
+- Next Milestone: M-040 (Ready)
 
 ## 8. Repository Architecture
 
@@ -167,13 +166,13 @@ Planned → Ready → In Progress → Validation → Completed
 
 ## Phase 2 --- Shared Platform Foundation
 
-### Current Milestone
+### Latest Completed Milestone
 
-**M-039 --- Shared Platform Error Contracts Foundation** (Ready)
+**M-039 — Shared Platform Error Contracts Foundation** (Completed)
 
 ### Planned Milestones
 
-#### M-039 --- Shared Platform Error Contracts Foundation
+#### M-039 --- Shared Platform Error Contracts Foundation (Completed)
 
 - Objective: Standardize platform error contracts.
 - Dependencies: M-036, M-037, M-038
@@ -189,7 +188,7 @@ Planned → Ready → In Progress → Validation → Completed
   - Tests
   - Turbo
 
-#### M-040 --- Shared Platform Event Contracts Foundation
+#### M-040 --- Shared Platform Event Contracts Foundation (Ready)
 
 - Objective: Shared event contracts.
 
@@ -309,10 +308,16 @@ through M-036
 1.1.2 Superseded Repository synchronized
 through M-038
 
-1.2.0 Active Introduced planned roadmap
+1.2.0 Superseded Introduced planned roadmap
 M-039--M-055, milestone
 reservation policy, dependency
 chain and promotion workflow.
+
+1.2.1 Active
+
+Repository synchronized through M-039.
+Completed Shared Platform Error Contracts Foundation.
+Promoted M-040 to Ready.
 -----------------------------------------------------------------------
 
 ---
@@ -354,7 +359,13 @@ Every milestone is complete only after:
 
 ---
 
-# 21. Architecture Decision Records
+# 21. Lessons Learned
+
+## Lesson N+22
+
+Platform capabilities shall continue evolving through contracts-first architecture before runtime implementations.
+
+# 22. Architecture Decision Records
 
 ## ADR-001 --- Repository-First Governance
 
@@ -374,8 +385,8 @@ Milestone Depends On Status
 
 ---
 
-M-039 M-036,M-037,M-038 Ready
-M-040 M-039 Planned
+M-039 M-036,M-037,M-038 Completed
+M-040 M-039 Ready
 M-041 M-040 Planned
 M-042 M-041 Planned
 M-043 M-042 Planned
