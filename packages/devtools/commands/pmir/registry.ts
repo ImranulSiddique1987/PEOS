@@ -137,3 +137,23 @@ export const milestoneRegistry: Readonly<Record<string, MilestoneDefinition>> =
       status: "Planned",
     },
   };
+
+export function getMilestone(id: string): MilestoneDefinition {
+  const milestone = milestoneRegistry[id];
+
+  if (!milestone) {
+    throw new Error(`Unknown milestone: ${id}`);
+  }
+
+  return milestone;
+}
+
+export function getNextMilestone(
+  milestone: MilestoneDefinition,
+): MilestoneDefinition | undefined {
+  return milestone.next ? milestoneRegistry[milestone.next] : undefined;
+}
+
+export function getMilestones(): readonly MilestoneDefinition[] {
+  return Object.values(milestoneRegistry);
+}

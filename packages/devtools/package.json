@@ -7,14 +7,14 @@
   "type": "module",
   "files": [
     "README.md",
-    "modules"
+    "commands"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "pmir:update": "tsx modules/pmir/update-pmir.ts"
+    "pmir:update": "tsx commands/pmir/update-pmir.ts"
   },
   "devDependencies": {
     "@peos/tsconfig": "workspace:*",

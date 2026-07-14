@@ -1,6 +1,5 @@
 import { PMIRRenderer } from "./renderer.js";
 import { PMIRRoadmap } from "./roadmap.js";
-import { milestoneRegistry } from "./registry.js";
 
 import type { PMIRUpdateOptions } from "./types.js";
 
@@ -27,34 +26,16 @@ export async function runPMIRCli(): Promise<void> {
 
   const document = roadmap.getDocument();
 
-  const completed = milestoneRegistry[options.milestone];
-
-  if (!completed) {
-    throw new Error(`Unknown milestone: ${options.milestone}`);
-  }
-
-  if (!completed.next) {
-    throw new Error(
-      `Milestone ${completed.id} does not define a next milestone.`,
-    );
-  }
-
-  const next = milestoneRegistry[completed.next];
-
-  if (!next) {
-    throw new Error(`Unable to locate next milestone: ${completed.next}`);
-  }
-
-  const version = roadmap.getNextVersion();
+  const context = roadmap.createRenderingContext(options);
 
   console.log("========================================");
   console.log(" PEOS DevTools");
   console.log(" PMIR Automation Engine");
   console.log("========================================");
   console.log(`Current Version     : ${document.version}`);
-  console.log(`Next Version        : ${version}`);
-  console.log(`Completed Milestone : ${completed.id}`);
-  console.log(`Next Milestone      : ${next.id}`);
+  console.log(`Next Version        : ${context.version}`);
+  console.log(`Completed Milestone : ${context.completedMilestone.id}`);
+  console.log(`Next Milestone      : ${context.nextMilestone?.id ?? "None"}`);
   console.log("========================================");
 
   if (options.validateOnly) {
@@ -64,7 +45,7 @@ export async function runPMIRCli(): Promise<void> {
 
   const renderer = new PMIRRenderer();
 
-  const updatedContent = renderer.render(document, version, completed, next);
+  const updatedContent = renderer.render(document, context);
 
   if (options.dryRun) {
     console.log("Dry run completed successfully.");
