@@ -33,12 +33,14 @@ export class PMIRRoadmap {
     return this.document;
   }
 
+  public getPath(): string {
+    return PMIR_PATH;
+  }
+
   public createRenderingContext(
     options: PMIRUpdateOptions,
   ): PMIRRenderingContext {
-    const completedMilestone = getMilestone(
-      this.document.latestCompletedMilestone,
-    );
+    const completedMilestone = getMilestone(options.milestone);
 
     return {
       version: nextVersion(this.document.version),

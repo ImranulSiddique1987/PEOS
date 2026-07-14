@@ -52,9 +52,7 @@ export async function runPMIRCli(): Promise<void> {
     return;
   }
 
-  console.log(
-    "PMIR rendering completed. File persistence will be enabled in the next iteration.",
-  );
+  renderer.save(roadmap.getPath(), updatedContent);
 
-  void updatedContent;
+  console.log("PMIR updated successfully.");
 }
