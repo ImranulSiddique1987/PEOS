@@ -17,3 +17,5 @@ export * from "./logging";
 export * as logging from "./logging";
 export * from "./events";
 export * as events from "./events";
+export * from "./di/index.js";
+export * as di from "./di/index.js";

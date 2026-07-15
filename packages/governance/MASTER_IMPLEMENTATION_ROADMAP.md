@@ -122,8 +122,8 @@ No implementation begins until all gates pass.
 - Repository Status: Healthy
 - Current Phase: Phase 2 --- Shared Platform Foundation
 - PMIR Version: 1.2.2
-- Latest Completed: M-040
-- Next Milestone: M-041 (Ready)
+- Latest Completed: M-041
+- Next Milestone: M-042 (Ready)
 
 ## 8. Repository Architecture
 
@@ -167,7 +167,7 @@ Planned → Ready → In Progress → Validation → Completed
 
 ### Latest Completed Milestone
 
-**M-040 — Shared Platform Event Contracts Foundation** (Completed)
+**M-041 — Shared Platform Dependency Injection Contracts Foundation** (Completed)
 
 ### Planned Milestones
 
@@ -187,7 +187,7 @@ Planned → Ready → In Progress → Validation → Completed
   - Tests
   - Turbo
 
-#### M-041 --- Shared Platform Dependency Injection Contracts Foundation (Ready)
+#### M-042 --- Shared Platform Plugin Contracts Foundation (Ready)
 
 - Objective: Shared event contracts.
 
@@ -301,9 +301,9 @@ Version Status Description
 
 1.2.2 Active
 
-Repository synchronized through M-040.
-Completed M-040 - Shared Platform Event Contracts Foundation.
-Promoted M-041 to Ready.
+Repository synchronized through M-041.
+Completed M-041 - Shared Platform Dependency Injection Contracts Foundation.
+Promoted M-042 to Ready.
 
 ---
 
