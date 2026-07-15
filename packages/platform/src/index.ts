@@ -29,3 +29,4 @@ export * from "./kernel/index.js";
 export * as kernel from "./kernel/index.js";
 export * from "./workflow/index.js";
 export * from "./ai";
+export * from "./agent";
