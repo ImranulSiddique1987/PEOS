@@ -25,3 +25,5 @@ export * from "./services/index.js";
 export * from "./context/index.js";
 export * from "./runtime/index.js";
 export * as runtime from "./runtime/index.js";
+export * from "./kernel/index.js";
+export * as kernel from "./kernel/index.js";
