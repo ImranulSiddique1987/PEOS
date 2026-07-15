@@ -22,3 +22,4 @@ export * as di from "./di/index.js";
 export * from "./plugins/index.js";
 export * as plugins from "./plugins/index.js";
 export * from "./services/index.js";
+export * from "./context/index.js";
