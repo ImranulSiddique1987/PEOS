@@ -19,3 +19,5 @@ export * from "./events";
 export * as events from "./events";
 export * from "./di/index.js";
 export * as di from "./di/index.js";
+export * from "./plugins/index.js";
+export * as plugins from "./plugins/index.js";
