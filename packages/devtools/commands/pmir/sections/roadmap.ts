@@ -1,31 +1,47 @@
 import { replaceRequired } from "../utils.js";
 
 import type { PMIRDocument, PMIRRenderingContext } from "../types.js";
-
 import type { PMIRSectionRenderer } from "./section-renderer.js";
 
 /**
- * Renders the Phase Roadmap section.
+ * Constitutional PMIR Roadmap Renderer
+ *
+ * Updates milestone status tables inside the constitutional PMIR.
+ *
+ * Responsibilities:
+ * - Marks the completed milestone as Completed.
+ * - Promotes the next milestone from Planned to Ready.
+ *
+ * This renderer is independent of chapter numbers and works across
+ * all milestone tables (M-001 → M-499).
  */
 export class RoadmapSection implements PMIRSectionRenderer {
   public render(document: PMIRDocument, context: PMIRRenderingContext): string {
     let content = document.content;
 
-    // Latest Completed Milestone
-    content = replaceRequired(
-      content,
-      /\*\*M-\d+\s+—\s+.+?\*\*\s+\(Completed\)/,
-      `**${context.completedMilestone.id} — ${context.completedMilestone.title}** (Completed)`,
-      "Latest Completed Milestone",
+    const completedRegex = new RegExp(
+      `(\\|\\s*${context.completedMilestone.id}\\s*\\|[^|]*\\|\\s*)(Planned|Ready|In Progress|Validation)(\\s*\\|)`,
+      "i",
     );
 
-    // Next Ready Milestone
+    content = replaceRequired(
+      content,
+      completedRegex,
+      `$1Completed$3`,
+      context.completedMilestone.id,
+    );
+
     if (context.nextMilestone) {
+      const nextRegex = new RegExp(
+        `(\\|\\s*${context.nextMilestone.id}\\s*\\|[^|]*\\|\\s*)Planned(\\s*\\|)`,
+        "i",
+      );
+
       content = replaceRequired(
         content,
-        /####\s+M-\d+\s+—\s+.+?(?=\r?\n|$)/,
-        `#### ${context.nextMilestone.id} — ${context.nextMilestone.title}`,
-        "Next Milestone",
+        nextRegex,
+        `$1Ready$2`,
+        context.nextMilestone.id,
       );
     }
 

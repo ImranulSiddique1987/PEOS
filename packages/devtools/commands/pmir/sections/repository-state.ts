@@ -5,38 +5,18 @@ import type { PMIRDocument, PMIRRenderingContext } from "../types.js";
 import type { PMIRSectionRenderer } from "./section-renderer.js";
 
 /**
- * Renders the "Current Repository State" section.
+ * Constitutional Repository State Renderer
  *
- * Ownership:
- * - PMIR Version
- * - Latest Completed Milestone
- * - Next Milestone
+ * Updates only the PMIR version inside the constitutional
+ * document metadata table.
  */
 export class RepositoryStateSection implements PMIRSectionRenderer {
   public render(document: PMIRDocument, context: PMIRRenderingContext): string {
-    let content = document.content;
-
-    content = replaceRequired(
-      content,
-      /- PMIR Version:\s*.*/,
-      `- PMIR Version: ${context.version}`,
+    return replaceRequired(
+      document.content,
+      /(Version\s+)([0-9]+\.[0-9]+\.[0-9]+(?:\s+Enterprise\s+Extended\s+Edition)?)/,
+      `$1${context.version}`,
       "PMIR Version",
     );
-
-    content = replaceRequired(
-      content,
-      /- Latest Completed:\s*.*/,
-      `- Latest Completed: ${context.completedMilestone.id}`,
-      "Latest Completed",
-    );
-
-    content = replaceRequired(
-      content,
-      /- Next Milestone:\s*.*/,
-      `- Next Milestone: ${context.nextMilestone?.id ?? "None"} (Ready)`,
-      "Next Milestone",
-    );
-
-    return content;
   }
 }

@@ -3,8 +3,12 @@
  * Licensed under the MIT License.
  */
 
-import type { ServiceIdentifier } from "./ServiceIdentifier.js";
+import type {
+  ServiceConstructor,
+  ServiceIdentifier,
+} from "./ServiceIdentifier.js";
 import { ServiceLifetime } from "./ServiceLifetime.js";
+import type { ServiceProvider } from "./ServiceProvider.js";
 
 /**
  * Describes a registered service.
@@ -16,15 +20,15 @@ import { ServiceLifetime } from "./ServiceLifetime.js";
  * Responsibilities:
  * - Describe the service identity.
  * - Describe the intended service lifetime.
+ * - Describe optional runtime activation metadata.
  *
  * Non-Responsibilities:
  * - Service registration
  * - Service resolution
  * - Service activation
  * - Service instantiation
- * * Future Evolution (Deferred):
- * - Service factories
- * - Implementation identifiers
+ *
+ * Future Evolution (Deferred):
  * - Service metadata
  * - Service tags
  * - Named registrations
@@ -40,4 +44,23 @@ export interface ServiceDescriptor<T = unknown> {
    * Defines the intended lifetime of the service.
    */
   readonly lifetime: ServiceLifetime;
+
+  /**
+   * Optional implementation type used by the runtime
+   * to construct the service.
+   */
+  readonly implementation?: ServiceConstructor<T>;
+
+  /**
+   * Optional factory used to create the service.
+   * When specified, it takes precedence over
+   * implementation construction.
+   */
+  readonly factory?: (provider: ServiceProvider) => T;
+
+  /**
+   * Optional pre-created instance.
+   * Primarily intended for singleton registrations.
+   */
+  readonly instance?: T;
 }

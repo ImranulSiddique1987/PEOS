@@ -1,43 +1,37 @@
-import { writeTextFile } from "./utils.js";
+import * as fs from "node:fs";
 
+import type { PMIRDocument, PMIRRenderingContext } from "./types.js";
+
+import { DependencyMatrixSection } from "./sections/dependency-matrix.js";
+import { HandoffSection } from "./sections/handoff.js";
 import { HistorySection } from "./sections/history.js";
 import { LessonsSection } from "./sections/lessons.js";
 import { RepositoryStateSection } from "./sections/repository-state.js";
 import { RoadmapSection } from "./sections/roadmap.js";
-
-import type { PMIRDocument, PMIRRenderingContext } from "./types.js";
+import { SummarySection } from "./sections/summary.js";
 
 import type { PMIRSectionRenderer } from "./sections/section-renderer.js";
 
-/**
- * PMIR Renderer
- *
- * Orchestrates all PMIR section renderers.
- *
- * Responsibilities:
- * - Execute section renderers in deterministic order.
- * - Pass immutable rendering context.
- * - Persist rendered output.
- *
- * This class intentionally contains no business logic.
- */
 export class PMIRRenderer {
-  private readonly sections: readonly PMIRSectionRenderer[];
+  private readonly renderers: readonly PMIRSectionRenderer[];
 
-  constructor() {
-    this.sections = [
+  public constructor() {
+    this.renderers = [
       new RepositoryStateSection(),
       new RoadmapSection(),
       new HistorySection(),
+      new DependencyMatrixSection(),
+      new SummarySection(),
       new LessonsSection(),
+      new HandoffSection(),
     ];
   }
 
   public render(document: PMIRDocument, context: PMIRRenderingContext): string {
     let content = document.content;
 
-    for (const section of this.sections) {
-      content = section.render(
+    for (const renderer of this.renderers) {
+      content = renderer.render(
         {
           ...document,
           content,
@@ -50,6 +44,6 @@ export class PMIRRenderer {
   }
 
   public save(path: string, content: string): void {
-    writeTextFile(path, content);
+    fs.writeFileSync(path, content, "utf8");
   }
 }

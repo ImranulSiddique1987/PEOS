@@ -1,64 +1,115 @@
-import type { PMIRDocument } from "./types.js";
+import type { MilestoneDefinition, PMIRDocument } from "./types.js";
 
-function escapeRegex(value: string): string {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function extractSection(content: string, heading: string): string {
-  const escapedHeading = escapeRegex(heading);
-
-  const regex = new RegExp(
-    `^##\\s+${escapedHeading}\\s*\\r?\\n([\\s\\S]*?)(?=^##\\s+|\\Z)`,
-    "m",
+function extractVersion(content: string): string {
+  const match = content.match(
+    /Version\s+([0-9]+\.[0-9]+\.[0-9]+(?:\s+Enterprise\s+Extended\s+Edition)?)/i,
   );
 
-  const match = content.match(regex);
-
   if (!match) {
-    throw new Error(`Unable to locate section: ${heading}`);
-  }
-
-  return match[1];
-}
-
-function readField(section: string, label: string): string {
-  const escapedLabel = escapeRegex(label);
-
-  const regex = new RegExp(`^-\\s+${escapedLabel}:\\s*(.+)$`, "m");
-
-  const match = section.match(regex);
-
-  if (!match) {
-    throw new Error(`Unable to locate field: ${label}`);
+    throw new Error("Unable to locate PMIR version.");
   }
 
   return match[1].trim();
 }
 
-export function parsePMIR(content: string): PMIRDocument {
-  const repositoryState = extractSection(
-    content,
-    "7. Current Repository State",
-  );
+function extractLatestCompleted(content: string): string {
+  const matches = [
+    ...content.matchAll(/\|\s*(M-\d+)\s*\|[^|]*\|\s*Completed\s*\|/g),
+  ];
 
-  const version = readField(repositoryState, "PMIR Version");
-
-  const latestCompleted = readField(repositoryState, "Latest Completed");
-
-  const nextMilestone = readField(repositoryState, "Next Milestone");
-
-  const completedMatch = latestCompleted.match(/M-\d+/);
-
-  if (!completedMatch) {
-    throw new Error("Invalid Latest Completed milestone.");
+  if (matches.length === 0) {
+    throw new Error("Unable to determine latest completed milestone.");
   }
 
-  const nextMatch = nextMilestone.match(/M-\d+/);
+  return matches[matches.length - 1][1];
+}
+
+function extractNextMilestone(
+  content: string,
+  latestCompleted: string,
+): string {
+  const current = Number.parseInt(latestCompleted.substring(2), 10);
+
+  const regex = /\|\s*(M-(\d+))\s*\|[^|]*\|\s*Planned\s*\|/g;
+
+  for (const match of content.matchAll(regex)) {
+    const milestone = match[1];
+    const number = Number.parseInt(match[2], 10);
+
+    if (number > current) {
+      return milestone;
+    }
+  }
+
+  return "";
+}
+
+function extractMilestones(
+  content: string,
+): ReadonlyMap<string, MilestoneDefinition> {
+  const milestones = new Map<string, MilestoneDefinition>();
+
+  let currentPhase = "";
+
+  const lines = content.split(/\r?\n/);
+
+  for (const line of lines) {
+    const phaseMatch = line.match(
+      /^#\s+Chapter\s+\d+\s+—\s+(Phase\s+\d+:[^#]+)$/,
+    );
+
+    if (phaseMatch) {
+      currentPhase = phaseMatch[1].trim();
+      continue;
+    }
+
+    const milestoneMatch = line.match(
+      /^\|\s*(M-\d+)\s*\|\s*(.*?)\s*\|\s*(Completed|Planned|Validation|In Progress|Released|Deprecated|Cancelled)\s*\|$/,
+    );
+
+    if (!milestoneMatch) {
+      continue;
+    }
+
+    const [, id, title, status] = milestoneMatch;
+
+    milestones.set(id, {
+      id,
+      title: title.trim(),
+      phase: currentPhase,
+      status,
+    });
+  }
+
+  const values = [...milestones.values()];
+
+  for (let i = 0; i < values.length - 1; i++) {
+    const current = values[i];
+    const next = values[i + 1];
+
+    milestones.set(current.id, {
+      ...current,
+      next: next.id,
+    });
+  }
+
+  return milestones;
+}
+
+export function parsePMIR(content: string): PMIRDocument {
+  const version = extractVersion(content);
+
+  const latestCompletedMilestone = extractLatestCompleted(content);
+
+  const nextMilestone = extractNextMilestone(content, latestCompletedMilestone);
+
+  const milestones = extractMilestones(content);
 
   return {
     content,
     version,
-    latestCompletedMilestone: completedMatch[0],
-    nextMilestone: nextMatch?.[0] ?? "",
+    latestCompletedMilestone,
+    nextMilestone,
+    milestones,
   };
 }

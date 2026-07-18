@@ -2,52 +2,50 @@
  * PMIR automation options supplied by the CLI.
  */
 export interface PMIRUpdateOptions {
-  /**
-   * Completed milestone identifier.
-   */
   readonly milestone: string;
-
-  /**
-   * Execute without writing changes.
-   */
   readonly dryRun: boolean;
-
-  /**
-   * Validate only.
-   */
   readonly validateOnly: boolean;
-
-  /**
-   * Lesson learned for the current milestone.
-   */
   readonly lesson?: string;
 }
 
 /**
- * Parsed PMIR document.
- */
-export interface PMIRDocument {
-  readonly content: string;
-  readonly version: string;
-  readonly latestCompletedMilestone: string;
-  readonly nextMilestone: string;
-}
-
-/**
- * Registry milestone definition.
+ * A milestone parsed directly from the constitutional PMIR.
  */
 export interface MilestoneDefinition {
   readonly id: string;
   readonly title: string;
-  readonly next?: string;
   readonly phase: string;
-  readonly status: "Completed" | "Ready" | "Planned";
+  readonly status: string;
+  readonly next?: string;
+}
+
+/**
+ * Parsed constitutional PMIR document.
+ *
+ * The parser is the single source of truth.
+ */
+export interface PMIRDocument {
+  readonly content: string;
+  readonly version: string;
+
+  /**
+   * Latest completed milestone discovered from the roadmap.
+   */
+  readonly latestCompletedMilestone: string;
+
+  /**
+   * Next milestone discovered from the roadmap.
+   */
+  readonly nextMilestone: string;
+
+  /**
+   * Every milestone parsed directly from the PMIR.
+   */
+  readonly milestones: ReadonlyMap<string, MilestoneDefinition>;
 }
 
 /**
  * Shared rendering context.
- *
- * Every section renderer receives the same immutable context.
  */
 export interface PMIRRenderingContext {
   readonly version: string;
