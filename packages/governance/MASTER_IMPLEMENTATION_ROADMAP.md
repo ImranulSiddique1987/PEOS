@@ -122,8 +122,8 @@ No implementation begins until all gates pass.
 - Repository Status: Healthy
 - Current Phase: Phase 2 --- Shared Platform Foundation
 - PMIR Version: 1.2.2
-- Latest Completed: M-054
-- Next Milestone: M-055 (Ready)
+- Latest Completed: M-055
+- Next Milestone: None (Ready)
 
 ## 8. Repository Architecture
 
@@ -167,7 +167,7 @@ Planned → Ready → In Progress → Validation → Completed
 
 ### Latest Completed Milestone
 
-**M-054 — Shared Platform Workflow Contracts Foundation** (Completed)
+**M-055 — Shared Platform AI Runtime Contracts Foundation** (Completed)
 
 ### Planned Milestones
 
@@ -301,9 +301,9 @@ Version Status Description
 
 1.2.2 Active
 
-Repository synchronized through M-054.
-Completed M-054 - Shared Platform Workflow Contracts Foundation.
-Promoted M-055 to Ready.
+Repository synchronized through M-055.
+Completed M-055 - Shared Platform AI Runtime Contracts Foundation.
+Promoted None to Ready.
 
 ---
 

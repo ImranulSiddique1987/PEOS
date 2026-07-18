@@ -35,3 +35,4 @@ export * from "./knowledge";
 export * from "./retrieval";
 export * from "./retrieval-pipeline";
 export * from "./prompt";
+export * from "./tool";
