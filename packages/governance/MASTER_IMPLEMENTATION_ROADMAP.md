@@ -121,9 +121,9 @@ No implementation begins until all gates pass.
 
 - Repository Status: Healthy
 - Current Phase: Phase 2 --- Shared Platform Foundation
-- PMIR Version: 1.2.2
+- PMIR Version: 1.2.3
 - Latest Completed: M-055
-- Next Milestone: None (Ready)
+- Next Milestone: M-056 (Ready)
 
 ## 8. Repository Architecture
 
@@ -150,8 +150,8 @@ M-039 through M-055 are pre-approved roadmap milestones.
 ### Milestone Reservation
 
 - M-001--028 Repository Foundation
-- M-029--055 Shared Platform Foundation
-- M-056--099 Shared Platform Runtime
+- M-029--060 Shared Platform Foundation
+- M-061--099 Shared Platform Runtime
 - M-100--149 Applications
 - M-150--199 Enterprise Services
 - M-200--299 Enterprise Intelligence
@@ -167,89 +167,29 @@ Planned → Ready → In Progress → Validation → Completed
 
 ### Latest Completed Milestone
 
-**M-055 — Shared Platform AI Runtime Contracts Foundation** (Completed)
+**M-055 — Shared Platform Tool Contracts Foundation** (Completed)
 
 ### Planned Milestones
 
-#### M-039 --- Shared Platform Error Contracts Foundation (Completed)
+#### M-056 — Shared Platform Capability Contracts Foundation
 
-- Objective: Standardize platform error contracts.
-- Dependencies: M-036, M-037, M-038
-- Deliverables:
-  - Error contracts
-  - Barrel exports
-  - Public API exports
-  - Smoke tests
-- Acceptance Criteria:
-  - Build
-  - Lint
-  - Typecheck
-  - Tests
-  - Turbo
+- Objective: Shared capability contracts.
 
-#### M-055 --- Shared Platform AI Runtime Contracts Foundation (Ready)
+#### M-057 — Shared Platform Planning Contracts Foundation
 
-- Objective: Shared event contracts.
+- Objective: Shared planning contracts.
 
-#### M-041 --- Shared Platform Dependency Injection Contracts Foundation
+#### M-058 — Shared Platform Reasoning Contracts Foundation
 
-- Objective: DI contracts.
+- Objective: Shared reasoning contracts.
 
-#### M-042 --- Shared Platform Plugin Contracts Foundation
+#### M-059 — Shared Platform Execution Contracts Foundation
 
-- Objective: Plugin contracts.
+- Objective: Shared execution contracts.
 
-#### M-043 --- Shared Platform Service Contracts Foundation
+#### M-060 — Shared Platform Orchestration Contracts Foundation
 
-- Objective: Service contracts.
-
-#### M-044 --- Shared Platform Command Contracts Foundation
-
-- Objective: Command contracts.
-
-#### M-045 --- Shared Platform Query Contracts Foundation
-
-- Objective: Query contracts.
-
-#### M-046 --- Shared Platform Validation Contracts Foundation
-
-- Objective: Validation contracts.
-
-#### M-047 --- Shared Platform Security Contracts Foundation
-
-- Objective: Security contracts.
-
-#### M-048 --- Shared Platform Telemetry Contracts Foundation
-
-- Objective: Telemetry contracts.
-
-#### M-049 --- Shared Platform Metrics Contracts Foundation
-
-- Objective: Metrics contracts.
-
-#### M-050 --- Shared Platform Feature Flag Contracts Foundation
-
-- Objective: Feature flag contracts.
-
-#### M-051 --- Shared Platform Cache Contracts Foundation
-
-- Objective: Cache contracts.
-
-#### M-052 --- Shared Platform Messaging Contracts Foundation
-
-- Objective: Messaging contracts.
-
-#### M-053 --- Shared Platform Scheduler Contracts Foundation
-
-- Objective: Scheduler contracts.
-
-#### M-054 --- Shared Platform Workflow Contracts Foundation
-
-- Objective: Workflow contracts.
-
-#### M-055 --- Shared Platform AI Runtime Contracts Foundation
-
-- Objective: AI runtime contracts.
+- Objective: Shared orchestration contracts.
 
 # 13. Milestone Lifecycle
 
@@ -299,11 +239,11 @@ Version Status Description
 
 ---
 
-1.2.2 Active
+1.2.3 Active
 
 Repository synchronized through M-055.
-Completed M-055 - Shared Platform AI Runtime Contracts Foundation.
-Promoted None to Ready.
+Completed M-055 - Shared Platform Tool Contracts Foundation.
+Promoted M-056 to Ready.
 
 ---
 
@@ -385,6 +325,11 @@ M-052 M-051 Planned
 M-053 M-052 Planned
 M-054 M-053 Planned
 M-055 M-054 Planned
+M-056 M-055 Planned
+M-057 M-056 Planned
+M-058 M-057 Planned
+M-059 M-058 Planned
+M-060 M-059 Planned
 
 # B. Repository Health Checklist
 
@@ -401,7 +346,8 @@ M-055 M-054 Planned
 
 # C. Implementation Order
 
-M-039 → M-040 → M-041 → M-042 → M-043 → M-044 → M-045 → M-046 → M-047 →
-M-048 → M-049 → M-050 → M-051 → M-052 → M-053 → M-054 → M-055
+M-039 → M-040 → M-041 → M-042 → M-043 → M-044 → M-045 → M-046 →
+M-047 → M-048 → M-049 → M-050 → M-051 → M-052 → M-053 →
+M-054 → M-055 → M-056 → M-057 → M-058 → M-059 → M-060
 
 # D. End of PMIR v1.2.0

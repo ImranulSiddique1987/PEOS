@@ -1,32 +1,64 @@
 import type { PMIRDocument } from "./types.js";
 
-/**
- * Parses the PMIR document and extracts the
- * metadata required by the automation engine.
- */
-export function parsePMIR(content: string): PMIRDocument {
-  const versionMatch = content.match(/^Version\s+(\d+\.\d+\.\d+)$/m);
+function escapeRegex(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
 
-  if (!versionMatch) {
-    throw new Error("Unable to locate PMIR Version.");
+function extractSection(content: string, heading: string): string {
+  const escapedHeading = escapeRegex(heading);
+
+  const regex = new RegExp(
+    `^##\\s+${escapedHeading}\\s*\\r?\\n([\\s\\S]*?)(?=^##\\s+|\\Z)`,
+    "m",
+  );
+
+  const match = content.match(regex);
+
+  if (!match) {
+    throw new Error(`Unable to locate section: ${heading}`);
   }
 
-  const completedMatch = content.match(/^- Latest Completed:\s*(M-\d+)$/m);
+  return match[1];
+}
+
+function readField(section: string, label: string): string {
+  const escapedLabel = escapeRegex(label);
+
+  const regex = new RegExp(`^-\\s+${escapedLabel}:\\s*(.+)$`, "m");
+
+  const match = section.match(regex);
+
+  if (!match) {
+    throw new Error(`Unable to locate field: ${label}`);
+  }
+
+  return match[1].trim();
+}
+
+export function parsePMIR(content: string): PMIRDocument {
+  const repositoryState = extractSection(
+    content,
+    "7. Current Repository State",
+  );
+
+  const version = readField(repositoryState, "PMIR Version");
+
+  const latestCompleted = readField(repositoryState, "Latest Completed");
+
+  const nextMilestone = readField(repositoryState, "Next Milestone");
+
+  const completedMatch = latestCompleted.match(/M-\d+/);
 
   if (!completedMatch) {
-    throw new Error("Unable to locate Latest Completed milestone.");
+    throw new Error("Invalid Latest Completed milestone.");
   }
 
-  const nextMatch = content.match(/^- Next Milestone:\s*(M-\d+)/m);
-
-  if (!nextMatch) {
-    throw new Error("Unable to locate Next Milestone.");
-  }
+  const nextMatch = nextMilestone.match(/M-\d+/);
 
   return {
     content,
-    version: versionMatch[1],
-    latestCompletedMilestone: completedMatch[1],
-    nextMilestone: nextMatch[1],
+    version,
+    latestCompletedMilestone: completedMatch[0],
+    nextMilestone: nextMatch?.[0] ?? "",
   };
 }

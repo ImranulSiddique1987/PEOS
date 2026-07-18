@@ -23,8 +23,8 @@ export class RoadmapSection implements PMIRSectionRenderer {
     if (context.nextMilestone) {
       content = replaceRequired(
         content,
-        /####\s+M-\d+\s+---\s+.+?\s+\(Ready\)/,
-        `#### ${context.nextMilestone.id} --- ${context.nextMilestone.title} (Ready)`,
+        /####\s+M-\d+\s+—\s+.+?(?=\r?\n|$)/,
+        `#### ${context.nextMilestone.id} — ${context.nextMilestone.title}`,
         "Next Milestone",
       );
     }
