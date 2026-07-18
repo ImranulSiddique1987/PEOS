@@ -33,3 +33,4 @@ export * from "./agent";
 export * from "./memory";
 export * from "./knowledge";
 export * from "./retrieval";
+export * from "./retrieval-pipeline";
