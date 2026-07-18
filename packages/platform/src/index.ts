@@ -40,3 +40,5 @@ export * from "./capability";
 export * as capability from "./capability";
 export * from "./planning";
 export * as planning from "./planning";
+export * from "./reasoning";
+export * as reasoning from "./reasoning";
