@@ -36,3 +36,5 @@ export * from "./retrieval";
 export * from "./retrieval-pipeline";
 export * from "./prompt";
 export * from "./tool";
+export * from "./capability";
+export * as capability from "./capability";
