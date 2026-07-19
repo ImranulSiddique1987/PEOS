@@ -1,9 +1,7 @@
 import type { MilestoneDefinition, PMIRDocument } from "./types.js";
 
 function extractVersion(content: string): string {
-  const match = content.match(
-    /Version\s+([0-9]+\.[0-9]+\.[0-9]+(?:\s+Enterprise\s+Extended\s+Edition)?)/i,
-  );
+  const match = content.match(/Version\s+([0-9]+\.[0-9]+\.[0-9]+)/i);
 
   if (!match) {
     throw new Error("Unable to locate PMIR version.");
