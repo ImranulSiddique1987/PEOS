@@ -28,7 +28,7 @@ function extractNextMilestone(
 ): string {
   const current = Number.parseInt(latestCompleted.substring(2), 10);
 
-  const regex = /\|\s*(M-(\d+))\s*\|[^|]*\|\s*Planned\s*\|/g;
+  const regex = /\|\s*(M-(\d+))\s*\|[^|]*\|\s*(Ready|Planned)\s*\|/g;
 
   for (const match of content.matchAll(regex)) {
     const milestone = match[1];
@@ -62,7 +62,7 @@ function extractMilestones(
     }
 
     const milestoneMatch = line.match(
-      /^\|\s*(M-\d+)\s*\|\s*(.*?)\s*\|\s*(Completed|Planned|Validation|In Progress|Released|Deprecated|Cancelled)\s*\|$/,
+      /^\|\s*(M-\d+)\s*\|\s*(.*?)\s*\|\s*(Completed|Ready|Planned|Validation|In Progress|Released|Deprecated|Cancelled)\s*\|$/,
     );
 
     if (!milestoneMatch) {
