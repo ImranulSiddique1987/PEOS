@@ -6,9 +6,10 @@
 import type { ServiceCollection } from "./ServiceCollection.js";
 import type { ServiceDescriptor } from "./ServiceDescriptor.js";
 import type { ServiceIdentifier } from "./ServiceIdentifier.js";
-import type { ServiceProvider } from "./ServiceProvider.js";
+import { ServiceProvider } from "./ServiceProvider.js";
 import { ServiceRegistry } from "./ServiceRegistry.js";
 import { ServiceResolver } from "./ServiceResolver.js";
+import { ServiceScope } from "./ServiceScope.js";
 
 /**
  * Default runtime implementation of the PEOS service container.
@@ -17,15 +18,12 @@ import { ServiceResolver } from "./ServiceResolver.js";
  * - Store service registrations.
  * - Resolve registered services.
  * - Coordinate the registry and resolver.
+ * - Create logical service scopes.
  *
- * Non-Responsibilities (M-061B):
+ * Non-Responsibilities:
  * - Constructor injection
- * - Scoped lifetime management
  * - Circular dependency detection
- * - Disposal
- *
- * Future milestones will extend this class with
- * full dependency injection capabilities.
+ * - Advanced scope hierarchy
  */
 export class ServiceContainer implements ServiceCollection, ServiceProvider {
   private readonly registry: ServiceRegistry;
@@ -92,6 +90,13 @@ export class ServiceContainer implements ServiceCollection, ServiceProvider {
    */
   public descriptors(): readonly ServiceDescriptor[] {
     return this.registry.values();
+  }
+
+  /**
+   * Creates a new logical service scope.
+   */
+  public createScope(): ServiceScope {
+    return new ServiceScope(this.resolver);
   }
 
   /**

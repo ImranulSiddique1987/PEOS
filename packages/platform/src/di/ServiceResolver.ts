@@ -10,22 +10,23 @@ import type { ServiceIdentifier } from "./ServiceIdentifier.js";
 import { ServiceLifetime } from "./ServiceLifetime.js";
 import type { ServiceProvider } from "./ServiceProvider.js";
 import { ServiceRegistry } from "./ServiceRegistry.js";
+import { ServiceScope } from "./ServiceScope.js";
 
 /**
  * Runtime service resolver.
  *
  * Responsibilities:
  * - Locate registered service descriptors.
- * - Activate registered services.
+ * * - Activate registered services.
  * - Execute factory registrations.
  * - Delegate implementation activation.
  * - Manage singleton caching.
+ * - Manage scoped lifetime caching.
  *
  * Future Milestones:
  * - Constructor injection
- * - Scoped lifetimes
  * - Circular dependency detection
- * - Disposal
+ * - Advanced scope hierarchy
  */
 export class ServiceResolver {
   /**
@@ -69,7 +70,7 @@ export class ServiceResolver {
       throw new Error(`Service is not registered: ${String(identifier)}`);
     }
 
-    // Return cached singleton.
+    // Singleton cache.
     if (
       descriptor.lifetime === ServiceLifetime.Singleton &&
       this.registry.hasSingleton(identifier)
@@ -77,9 +78,18 @@ export class ServiceResolver {
       return this.registry.getSingleton(identifier)!;
     }
 
+    // Scoped cache.
+    if (
+      descriptor.lifetime === ServiceLifetime.Scoped &&
+      provider instanceof ServiceScope &&
+      provider.has(identifier)
+    ) {
+      return provider.getInstance(identifier)!;
+    }
+
     let instance: T;
 
-    // Pre-created instance.
+    // Existing instance.
     if (descriptor.instance !== undefined) {
       instance = descriptor.instance;
     }
@@ -100,9 +110,17 @@ export class ServiceResolver {
       throw new Error(`Unable to activate service: ${String(identifier)}`);
     }
 
-    // Cache singleton instances.
+    // Cache singleton.
     if (descriptor.lifetime === ServiceLifetime.Singleton) {
       this.registry.setSingleton(identifier, instance);
+    }
+
+    // Cache scoped instance.
+    if (
+      descriptor.lifetime === ServiceLifetime.Scoped &&
+      provider instanceof ServiceScope
+    ) {
+      provider.setInstance(identifier, instance);
     }
 
     return instance;
