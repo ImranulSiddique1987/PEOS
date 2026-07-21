@@ -4,6 +4,7 @@
  */
 
 import type { ActivationContext } from "./ActivationContext.js";
+import { ActivationException } from "./ActivationException.js";
 import { ConstructorActivator } from "./ConstructorActivator.js";
 import type { ServiceDescriptor } from "./ServiceDescriptor.js";
 import type { ServiceIdentifier } from "./ServiceIdentifier.js";
@@ -17,16 +18,12 @@ import { ServiceScope } from "./ServiceScope.js";
  *
  * Responsibilities:
  * - Locate registered service descriptors.
- * * - Activate registered services.
- * - Execute factory registrations.
+ * - Activate registered services.
+ * * - Execute factory registrations.
  * - Delegate implementation activation.
  * - Manage singleton caching.
  * - Manage scoped lifetime caching.
- *
- * Future Milestones:
- * - Constructor injection
- * - Circular dependency detection
- * - Advanced scope hierarchy
+ * - Detect circular dependencies.
  */
 export class ServiceResolver {
   /**
@@ -35,9 +32,20 @@ export class ServiceResolver {
   private readonly activator = new ConstructorActivator();
 
   /**
+   * Current dependency resolution stack.
+   */
+  private readonly resolutionStack: ServiceIdentifier[] = [];
+
+  /**
+   * Runtime dependency graph.
+   */
+  private readonly dependencyGraph = new Map<
+    ServiceIdentifier,
+    ServiceIdentifier[]
+  >();
+
+  /**
    * Creates a new service resolver.
-   *
-   * @param registry Runtime service registry.
    */
   public constructor(private readonly registry: ServiceRegistry) {}
 
@@ -64,65 +72,103 @@ export class ServiceResolver {
     provider: ServiceProvider,
     identifier: ServiceIdentifier<T>,
   ): T {
-    const descriptor = this.registry.get(identifier);
+    // ---------------------------------------------------------
+    // Circular dependency detection
+    // ---------------------------------------------------------
 
-    if (!descriptor) {
-      throw new Error(`Service is not registered: ${String(identifier)}`);
-    }
-
-    // Singleton cache.
-    if (
-      descriptor.lifetime === ServiceLifetime.Singleton &&
-      this.registry.hasSingleton(identifier)
-    ) {
-      return this.registry.getSingleton(identifier)!;
-    }
-
-    // Scoped cache.
-    if (
-      descriptor.lifetime === ServiceLifetime.Scoped &&
-      provider instanceof ServiceScope &&
-      provider.has(identifier)
-    ) {
-      return provider.getInstance(identifier)!;
-    }
-
-    let instance: T;
-
-    // Existing instance.
-    if (descriptor.instance !== undefined) {
-      instance = descriptor.instance;
-    }
-    // Factory registration.
-    else if (descriptor.factory) {
-      instance = descriptor.factory(provider);
-    }
-    // Constructor activation.
-    else if (descriptor.implementation) {
-      const context: ActivationContext<T> = {
+    if (this.resolutionStack.includes(identifier)) {
+      throw ActivationException.circularDependency(
+        this.resolutionStack,
         identifier,
-        descriptor,
-        provider,
-      };
-
-      instance = this.activator.activate(context);
-    } else {
-      throw new Error(`Unable to activate service: ${String(identifier)}`);
+      );
     }
 
-    // Cache singleton.
-    if (descriptor.lifetime === ServiceLifetime.Singleton) {
-      this.registry.setSingleton(identifier, instance);
+    const parent =
+      this.resolutionStack.length > 0
+        ? this.resolutionStack[this.resolutionStack.length - 1]
+        : undefined;
+
+    if (parent) {
+      const children = this.dependencyGraph.get(parent);
+
+      if (children) {
+        children.push(identifier);
+      } else {
+        this.dependencyGraph.set(parent, [identifier]);
+      }
     }
 
-    // Cache scoped instance.
-    if (
-      descriptor.lifetime === ServiceLifetime.Scoped &&
-      provider instanceof ServiceScope
-    ) {
-      provider.setInstance(identifier, instance);
-    }
+    this.resolutionStack.push(identifier);
 
-    return instance;
+    try {
+      const descriptor = this.registry.get(identifier);
+
+      if (!descriptor) {
+        throw new ActivationException(
+          `Service is not registered: ${String(identifier)}`,
+        );
+      }
+
+      // Singleton cache.
+      if (
+        descriptor.lifetime === ServiceLifetime.Singleton &&
+        this.registry.hasSingleton(identifier)
+      ) {
+        return this.registry.getSingleton(identifier)!;
+      }
+
+      // Scoped cache.
+      if (
+        descriptor.lifetime === ServiceLifetime.Scoped &&
+        provider instanceof ServiceScope &&
+        provider.has(identifier)
+      ) {
+        return provider.getInstance(identifier)!;
+      }
+
+      let instance: T;
+
+      // Existing instance.
+      if (descriptor.instance !== undefined) {
+        instance = descriptor.instance;
+      }
+      // Factory registration.
+      else if (descriptor.factory) {
+        instance = descriptor.factory(provider);
+      }
+      // Constructor activation.
+      else if (descriptor.implementation) {
+        const context: ActivationContext<T> = {
+          identifier,
+          descriptor,
+          provider,
+          resolutionStack: this.resolutionStack,
+          dependencyGraph: this.dependencyGraph,
+        };
+
+        instance = this.activator.activate(context);
+      } else {
+        throw new ActivationException(
+          `Unable to activate service: ${String(identifier)}`,
+        );
+      }
+
+      // Cache singleton.
+      if (descriptor.lifetime === ServiceLifetime.Singleton) {
+        this.registry.setSingleton(identifier, instance);
+      }
+
+      // Cache scoped instance.
+      if (
+        descriptor.lifetime === ServiceLifetime.Scoped &&
+        provider instanceof ServiceScope
+      ) {
+        provider.setInstance(identifier, instance);
+      }
+
+      return instance;
+    } finally {
+      this.resolutionStack.pop();
+    }
   }
 }

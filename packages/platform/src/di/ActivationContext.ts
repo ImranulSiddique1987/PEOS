@@ -14,12 +14,12 @@ import type { ServiceProvider } from "./ServiceProvider.js";
  * - Provide the requested service identifier.
  * - Provide the resolved service descriptor.
  * - Provide access to the service provider.
+ * - Expose runtime dependency resolution state.
  *
  * Non-Responsibilities:
  * - Service resolution
  * - Object construction
  * - Lifetime management
- * - Circular dependency detection
  */
 export interface ActivationContext<T = unknown> {
   /**
@@ -36,4 +36,23 @@ export interface ActivationContext<T = unknown> {
    * Runtime service provider.
    */
   readonly provider: ServiceProvider;
+
+  /**
+   * Current dependency resolution stack.
+   *
+   * The stack represents the active resolution path from the
+   * root service to the current activation request.
+   */
+  readonly resolutionStack: readonly ServiceIdentifier[];
+
+  /**
+   * Dependency graph captured during the current resolution.
+   *
+   * Key   -> Parent service
+   * Value -> Immediate child dependencies
+   */
+  readonly dependencyGraph: ReadonlyMap<
+    ServiceIdentifier,
+    readonly ServiceIdentifier[]
+  >;
 }

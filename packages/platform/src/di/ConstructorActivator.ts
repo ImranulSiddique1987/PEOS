@@ -13,11 +13,12 @@ import type { ServiceActivator } from "./ServiceActivator.js";
  * Responsibilities:
  * - Activate concrete implementations.
  * - Support parameterless constructors.
+ * - Preserve runtime activation context.
+ * - Surface deterministic activation failures.
  *
  * Future Evolution:
- * - Constructor injection
+ * - Constructor parameter injection
  * - Optional parameters
- * - Circular dependency detection
  * - Activation pipeline
  * - Interceptors
  */
@@ -41,8 +42,17 @@ export class ConstructorActivator implements ServiceActivator {
 
       return new Constructor();
     } catch (error) {
+      if (error instanceof ActivationException) {
+        throw error;
+      }
+
       throw new ActivationException(
-        `Failed to activate service: ${String(context.identifier)}`,
+        [
+          `Failed to activate service: ${String(context.identifier)}`,
+          `Resolution Path: ${context.resolutionStack
+            .map((identifier) => String(identifier))
+            .join(" -> ")}`,
+        ].join("\n"),
         error,
       );
     }
