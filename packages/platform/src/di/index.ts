@@ -17,3 +17,4 @@ export * from "./ServiceProvider.js";
 export * from "./ServiceRegistry.js";
 export * from "./ServiceResolver.js";
 export * from "./ServiceScope.js";
+export * from "./RuntimeMetadataService.js";
