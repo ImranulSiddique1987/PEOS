@@ -9,7 +9,7 @@
 Item Value
 Project Product Engineering Operating System (PEOS)
 Document Master Implementation Roadmap (PMIR)
-Version 2.0.5
+Version 2.0.6
 Status Active
 Classification Constitutional Enterprise Governance
 Repository PEOS
@@ -1476,8 +1476,8 @@ Agent Runtime
 | M-063 | Transient Lifetime Runtime Foundation          | Completed |
 | M-064 | Constructor Injection Runtime Foundation       | Completed |
 | M-065 | Circular Dependency Detection Foundation       | Completed |
-| M-066 | Disposal Pipeline Foundation                   | Ready     |
-| M-067 | Plugin Runtime Foundation                      | Planned   |
+| M-066 | Disposal Pipeline Foundation                   | Completed |
+| M-067 | Plugin Runtime Foundation                      | Ready     |
 | M-068 | Workflow Runtime Foundation                    | Planned   |
 | M-069 | Event Bus Runtime Foundation                   | Planned   |
 | M-070 | Memory Runtime Foundation                      | Planned   |
