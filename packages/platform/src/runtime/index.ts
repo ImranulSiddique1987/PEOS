@@ -39,3 +39,8 @@ export { RuntimeDiagnosticSeverity } from "./diagnostics/RuntimeDiagnosticSeveri
 export type { RuntimeDiagnostic } from "./diagnostics/RuntimeDiagnostic.js";
 export type { RuntimeDiagnosticReport } from "./diagnostics/RuntimeDiagnosticReport.js";
 export { RuntimeDiagnostics } from "./diagnostics/RuntimeDiagnostics.js";
+
+export { RuntimeTelemetryLevel } from "./telemetry/RuntimeTelemetryLevel.js";
+export type { RuntimeTelemetryRecord } from "./telemetry/RuntimeTelemetryRecord.js";
+export type { RuntimeTelemetryReport } from "./telemetry/RuntimeTelemetryReport.js";
+export { RuntimeTelemetry } from "./telemetry/RuntimeTelemetry.js";
