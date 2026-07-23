@@ -9,7 +9,7 @@
 Item Value
 Project Product Engineering Operating System (PEOS)
 Document Master Implementation Roadmap (PMIR)
-Version 2.0.19
+Version 2.0.20
 Status Active
 Classification Constitutional Enterprise Governance
 Repository PEOS
@@ -1490,8 +1490,8 @@ Agent Runtime
 | M-077 | Runtime Telemetry Foundation                   | Completed |
 | M-078 | Runtime Configuration Foundation               | Completed |
 | M-079 | Runtime Security Foundation                    | Completed |
-| M-080 | Runtime Policy Engine Foundation               | Ready     |
-| M-081 | Runtime Scheduling Foundation                  | Planned   |
+| M-080 | Runtime Policy Engine Foundation               | Completed |
+| M-081 | Runtime Scheduling Foundation                  | Ready     |
 | M-082 | Runtime State Management Foundation            | Planned   |
 | M-083 | Runtime Checkpointing Foundation               | Planned   |
 | M-084 | Runtime Recovery Foundation                    | Planned   |
