@@ -2,11 +2,15 @@
  * =============================================================================
  * PEOS — Product Engineering Operating System
  * -----------------------------------------------------------------------------
- * Shared Platform Tool Contracts Foundation
+ * Shared Platform Tool Contracts & Runtime Foundation
  * -----------------------------------------------------------------------------
  * Barrel exports for the Tool module.
  * =============================================================================
  */
+
+/* -------------------------------------------------------------------------- */
+/* Contract Exports                                                           */
+/* -------------------------------------------------------------------------- */
 
 export type { Tool } from "./Tool";
 export type { ToolContext } from "./ToolContext";
@@ -18,3 +22,14 @@ export type { ToolRequest } from "./ToolRequest";
 export type { ToolResponse } from "./ToolResponse";
 export type { ToolSession } from "./ToolSession";
 export type { ToolSpecification } from "./ToolSpecification";
+
+/* -------------------------------------------------------------------------- */
+/* Runtime Exports                                                            */
+/* -------------------------------------------------------------------------- */
+
+export { DefaultToolFactory } from "./DefaultToolFactory";
+export { ToolManager } from "./ToolManager";
+export { ToolRegistry } from "./ToolRegistry";
+export { ToolResolver } from "./ToolResolver";
+export { ToolRuntime } from "./ToolRuntime";
+export { registerTool } from "./registerTool";
