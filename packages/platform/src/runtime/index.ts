@@ -25,12 +25,17 @@ export {
   RuntimeStateError,
 } from "./RuntimeErrors.js";
 
-export * from "./validation/RuntimeValidationSeverity";
-export * from "./validation/RuntimeValidationIssue";
-export * from "./validation/RuntimeValidationResult";
-export * from "./validation/RuntimeValidator";
+export { RuntimeValidationSeverity } from "./validation/RuntimeValidationSeverity.js";
+export type { RuntimeValidationIssue } from "./validation/RuntimeValidationIssue.js";
+export type { RuntimeValidationResult } from "./validation/RuntimeValidationResult.js";
+export { RuntimeValidator } from "./validation/RuntimeValidator.js";
 
-export * from "./optimization/RuntimePerformanceMetrics";
-export * from "./optimization/RuntimeOptimizationStrategy";
-export * from "./optimization/RuntimeOptimizationResult";
-export * from "./optimization/RuntimeOptimizer";
+export type { RuntimePerformanceMetrics } from "./optimization/RuntimePerformanceMetrics.js";
+export type { RuntimeOptimizationStrategy } from "./optimization/RuntimeOptimizationStrategy.js";
+export type { RuntimeOptimizationResult } from "./optimization/RuntimeOptimizationResult.js";
+export { RuntimeOptimizer } from "./optimization/RuntimeOptimizer.js";
+
+export { RuntimeDiagnosticSeverity } from "./diagnostics/RuntimeDiagnosticSeverity.js";
+export type { RuntimeDiagnostic } from "./diagnostics/RuntimeDiagnostic.js";
+export type { RuntimeDiagnosticReport } from "./diagnostics/RuntimeDiagnosticReport.js";
+export { RuntimeDiagnostics } from "./diagnostics/RuntimeDiagnostics.js";
