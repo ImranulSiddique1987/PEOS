@@ -24,3 +24,13 @@ export {
   RuntimeNotFoundError,
   RuntimeStateError,
 } from "./RuntimeErrors.js";
+
+export * from "./validation/RuntimeValidationSeverity";
+export * from "./validation/RuntimeValidationIssue";
+export * from "./validation/RuntimeValidationResult";
+export * from "./validation/RuntimeValidator";
+
+export * from "./optimization/RuntimePerformanceMetrics";
+export * from "./optimization/RuntimeOptimizationStrategy";
+export * from "./optimization/RuntimeOptimizationResult";
+export * from "./optimization/RuntimeOptimizer";
