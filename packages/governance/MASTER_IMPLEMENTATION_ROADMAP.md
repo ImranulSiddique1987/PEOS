@@ -9,7 +9,7 @@
 Item Value
 Project Product Engineering Operating System (PEOS)
 Document Master Implementation Roadmap (PMIR)
-Version 2.0.13
+Version 2.0.14
 Status Active
 Classification Constitutional Enterprise Governance
 Repository PEOS
@@ -1484,8 +1484,8 @@ Agent Runtime
 | M-071 | Knowledge Runtime Foundation                   | Completed |
 | M-072 | Prompt Execution Runtime Foundation            | Completed |
 | M-073 | Tool Execution Runtime Foundation              | Completed |
-| M-074 | Agent Runtime Foundation                       | Ready     |
-| M-075 | Runtime Validation & Optimization Foundation   | Planned   |
+| M-074 | Agent Runtime Foundation                       | Completed |
+| M-075 | Runtime Validation & Optimization Foundation   | Ready     |
 | M-076 | Runtime Diagnostics Foundation                 | Planned   |
 | M-077 | Runtime Telemetry Foundation                   | Planned   |
 | M-078 | Runtime Configuration Foundation               | Planned   |
